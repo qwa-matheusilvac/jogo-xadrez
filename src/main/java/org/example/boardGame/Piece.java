@@ -3,7 +3,6 @@ package org.example.boardGame;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
 @NoArgsConstructor
 public class Piece {
     protected Position position;
@@ -12,5 +11,9 @@ public class Piece {
 
     protected Board getBoard() {
         return board;
+    }
+
+    public Piece(Board board) {
+        this.board = board;
     }
 }

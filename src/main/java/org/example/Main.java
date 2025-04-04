@@ -1,11 +1,12 @@
 package org.example;
 
 import org.example.boardGame.Board;
+import org.example.chess.ChessMatch;
 
 public class Main {
     public static void main(String[] args) {
+        ChessMatch chessMatch = new ChessMatch();
 
-        Board board = new Board(8, 8);
-
+        UI.printBoard(chessMatch.getPieces());
     }
 }
