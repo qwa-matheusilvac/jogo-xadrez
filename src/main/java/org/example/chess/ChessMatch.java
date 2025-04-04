@@ -23,8 +23,13 @@ public class ChessMatch{
         return pieces;
     }
 
-    private void initialSetup(){
-        board.placePiece(new Rook(board, Color.WHITE), new Position(2,1));
-        board.placePiece(new King(board, Color.BLACK), new Position(0,4));
+    private void placeNewPieces(char column, int row, ChessPiece piece){
+        board.placePiece(piece, new ChessPosition(column ,row).toPosition());
     }
+
+    private void initialSetup(){
+        placeNewPieces('b', 6, new Rook(board, Color.WHITE));
+        placeNewPieces('c', 2, new Rook(board, Color.WHITE));
+    }
+
 }
