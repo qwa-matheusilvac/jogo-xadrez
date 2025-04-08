@@ -70,8 +70,19 @@ public class ChessMatch{
     }
 
     private void initialSetup(){
-        placeNewPieces('b', 6, new Rook(board, Color.WHITE));
         placeNewPieces('c', 2, new Rook(board, Color.WHITE));
+        placeNewPieces('c', 1, new Rook(board, Color.WHITE));
+        placeNewPieces('e', 2, new Rook(board, Color.WHITE));
+        placeNewPieces('e', 1, new Rook(board, Color.WHITE));
+        placeNewPieces('d', 2, new Rook(board, Color.WHITE));
+        placeNewPieces('d', 1, new King(board, Color.WHITE));
+
+        placeNewPieces('c', 8, new Rook(board, Color.BLACK));
+        placeNewPieces('c', 7, new Rook(board, Color.BLACK));
+        placeNewPieces('e', 7, new Rook(board, Color.BLACK));
+        placeNewPieces('e', 8, new Rook(board, Color.BLACK));
+        placeNewPieces('d', 7, new Rook(board, Color.BLACK));
+        placeNewPieces('d', 8, new King(board, Color.BLACK));
     }
 
 }
