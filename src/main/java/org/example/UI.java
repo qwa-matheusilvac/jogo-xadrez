@@ -1,8 +1,22 @@
 package org.example;
 
 import org.example.chess.ChessPiece;
+import org.example.chess.ChessPosition;
+
+import java.util.Scanner;
 
 public class UI {
+
+    public static ChessPosition readChessPosition(Scanner scanner){
+        String s = scanner.nextLine();
+        try {
+            char column = s.charAt(0);
+            int row = Integer.parseInt(s.substring(1));
+            return new ChessPosition(column, row);
+        } catch (RuntimeException e){
+            throw new RuntimeException("Invalid position: " + e.getMessage());
+        }
+    }
 
     public static void printBoard(ChessPiece[][] pieces) {
         for (int i=0; i<pieces.length; i++) {

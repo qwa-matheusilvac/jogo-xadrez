@@ -1,6 +1,8 @@
 package org.example.chess;
 
 import org.example.boardGame.Board;
+import org.example.boardGame.BoardException;
+import org.example.boardGame.Piece;
 import org.example.boardGame.Position;
 import org.example.chess.pieces.King;
 import org.example.chess.pieces.Rook;
@@ -21,6 +23,28 @@ public class ChessMatch{
             }
         }
         return pieces;
+    }
+
+    public ChessPiece performChessMove(ChessPosition from, ChessPosition to){
+        Position fromPosition = from.toPosition();
+        Position toPosition = to.toPosition();
+
+        validateFromPosition(fromPosition);
+        Piece capturedPiece = makeMove(fromPosition, toPosition);
+        return (ChessPiece) capturedPiece;
+    }
+
+    private Piece makeMove(Position fromPosition, Position toPosition) {
+        Piece p = board.removePiece(fromPosition);
+        Piece capturedPiece = board.removePiece(toPosition);
+        board.placePiece(p, toPosition);
+        return capturedPiece;
+    }
+
+    private void validateFromPosition(Position from) {
+        if(!board.thereIsAPiece(from)){
+            throw new ChessException("Positio not found");
+        }
     }
 
     private void placeNewPieces(char column, int row, ChessPiece piece){
