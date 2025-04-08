@@ -1,12 +1,9 @@
 package org.example;
-
-import org.example.boardGame.Board;
 import org.example.chess.ChessException;
 import org.example.chess.ChessMatch;
 import org.example.chess.ChessPiece;
 import org.example.chess.ChessPosition;
 
-import java.sql.SQLOutput;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -28,9 +25,7 @@ public class Main {
                ChessPosition to = UI.readChessPosition(scanner);
 
                ChessPiece capturedPiece = chessMatch.performChessMove(from, to);
-           } catch (ChessException e) {
-               System.out.println(e.getMessage());
-           } catch (InputMismatchException e){
+           } catch (ChessException | InputMismatchException e) {
                System.out.println(e.getMessage());
            }
         }

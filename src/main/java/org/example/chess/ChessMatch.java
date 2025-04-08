@@ -30,9 +30,12 @@ public class ChessMatch{
         Position toPosition = to.toPosition();
 
         validateFromPosition(fromPosition);
+        validateToPosition(fromPosition, toPosition);
+
         Piece capturedPiece = makeMove(fromPosition, toPosition);
         return (ChessPiece) capturedPiece;
     }
+
 
     private Piece makeMove(Position fromPosition, Position toPosition) {
         Piece p = board.removePiece(fromPosition);
@@ -43,7 +46,16 @@ public class ChessMatch{
 
     private void validateFromPosition(Position from) {
         if(!board.thereIsAPiece(from)){
-            throw new ChessException("Positio not found");
+            throw new ChessException("Não tem peça na posição de origem");
+        }
+        if(!board.piece(from).isThereAnyPossibleMove()){
+            throw new ChessException("Não existe movimentos possiveis para a peça escolhida");
+        }
+    }
+
+    private void validateToPosition(Position from, Position toPosition) {
+        if(!board.piece(from).possibleMove(toPosition)){
+            throw new ChessException("A peça escolhida não pode se mover para a posição de destino");
         }
     }
 
