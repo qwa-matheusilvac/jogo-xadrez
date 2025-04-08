@@ -1,17 +1,23 @@
 package org.example.chess;
 
+import lombok.Getter;
 import org.example.boardGame.Board;
-import org.example.boardGame.BoardException;
 import org.example.boardGame.Piece;
 import org.example.boardGame.Position;
 import org.example.chess.pieces.King;
 import org.example.chess.pieces.Rook;
 
 public class ChessMatch{
+    @Getter
+    private int turn;
+    @Getter
+    private Color currentPlayer;
     private Board board;
 
     public ChessMatch() {
         board = new Board(8, 8);
+        turn = 1;
+        currentPlayer = Color.WHITE;
         initialSetup();
     }
 
@@ -39,6 +45,7 @@ public class ChessMatch{
         validateToPosition(fromPosition, toPosition);
 
         Piece capturedPiece = makeMove(fromPosition, toPosition);
+        nextTurn();
         return (ChessPiece) capturedPiece;
     }
 
@@ -54,6 +61,9 @@ public class ChessMatch{
         if(!board.thereIsAPiece(from)){
             throw new ChessException("Não tem peça na posição de origem");
         }
+        if(currentPlayer != ((ChessPiece)board.piece(from)).getColor()){
+            throw new ChessException("A peça escolhida não é sua.");
+        }
         if(!board.piece(from).isThereAnyPossibleMove()){
             throw new ChessException("Não existe movimentos possiveis para a peça escolhida");
         }
@@ -65,6 +75,10 @@ public class ChessMatch{
         }
     }
 
+    private  void nextTurn(){
+        turn++;
+        currentPlayer = currentPlayer == Color.WHITE ? Color.BLACK : Color.WHITE;
+    }
     private void placeNewPieces(char column, int row, ChessPiece piece){
         board.placePiece(piece, new ChessPosition(column ,row).toPosition());
     }
