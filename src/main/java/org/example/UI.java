@@ -5,6 +5,7 @@ import org.example.chess.ChessPiece;
 import org.example.chess.ChessPosition;
 import org.example.chess.Color;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class UI {
@@ -46,8 +47,10 @@ public class UI {
         }
     }
 
-    public static void printMatch(ChessMatch chessMatch){
+    public static void printMatch(ChessMatch chessMatch, List<ChessPiece> capturedPieces){
         printBoard(chessMatch.getPieces());
+        System.out.println();
+        printCapturedPiece(capturedPieces);
         System.out.println();
         System.out.println("Turn: " + chessMatch.getTurn());
         System.out.println("Waiting player: " + chessMatch.getCurrentPlayer());
@@ -75,9 +78,6 @@ public class UI {
         System.out.println("  a b c d e f g h");
     }
 
-
-
-
     private static void printPiece(ChessPiece piece, boolean background) {
         if (background) {
             System.out.print(ANSI_BLUE_BACKGROUND);
@@ -94,5 +94,21 @@ public class UI {
             }
         }
         System.out.print(" ");
+    }
+
+    private static void printCapturedPiece(List<ChessPiece> captured) {
+        List<ChessPiece> white = captured.stream().filter(p -> p.getColor() == Color.WHITE).toList();
+        List<ChessPiece> black = captured.stream().filter(p -> p.getColor() == Color.BLACK).toList();
+
+        System.out.println("Captured pieces: ");
+        System.out.println("White: ");
+        System.out.println(ANSI_WHITE);
+        white.forEach(p -> System.out.println(p));
+        System.out.println(ANSI_RESET);
+
+        System.out.println("Black: ");
+        System.out.println(ANSI_YELLOW);
+        black.forEach(p -> System.out.println(p));
+        System.out.println(ANSI_RESET);
     }
 }
