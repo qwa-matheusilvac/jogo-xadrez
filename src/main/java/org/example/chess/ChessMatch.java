@@ -182,6 +182,7 @@ public class ChessMatch{
         placeNewPieces('a', 1, new Rook(board, Color.WHITE));
         placeNewPieces('b', 1, new Knight(board, Color.WHITE));
         placeNewPieces('c', 1, new Bishop(board, Color.WHITE));
+        placeNewPieces('d', 1, new Queen(board, Color.WHITE));
         placeNewPieces('e', 1, new King(board, Color.WHITE));
         placeNewPieces('f', 1, new Bishop(board, Color.WHITE));
         placeNewPieces('g', 1, new Knight(board, Color.WHITE));
@@ -198,6 +199,7 @@ public class ChessMatch{
         placeNewPieces('a', 8, new Rook(board, Color.BLACK));
         placeNewPieces('b', 8, new Knight(board, Color.BLACK));
         placeNewPieces('c', 8, new Bishop(board, Color.BLACK));
+        placeNewPieces('d', 8, new Queen(board, Color.BLACK));
         placeNewPieces('e', 8, new King(board, Color.BLACK));
         placeNewPieces('f', 8, new Bishop(board, Color.BLACK));
         placeNewPieces('g', 8, new Knight(board, Color.BLACK));
