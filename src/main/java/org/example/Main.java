@@ -36,6 +36,16 @@ public class Main {
                    capturedPieces.add(capturedPiece);
                }
 
+               if(chessMatch.getPromoted() != null){
+                   System.out.println("Promote to: (B/N/R/Q)");
+                   String string = scanner.nextLine().toUpperCase();
+                   while (!string.equals("B") && !string.equals("N") && !string.equals("R") && !string.equals("Q")){
+                       System.out.println("invalid value,  use: (B/N/R/Q)");
+                       string = scanner.nextLine().toUpperCase();
+                   }
+                   chessMatch.replacePromotedPiece(string);
+               }
+
            } catch (ChessException | InputMismatchException e) {
                System.out.println(e.getMessage());
            }
